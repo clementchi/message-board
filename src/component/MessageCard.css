@@ -1,0 +1,63 @@
+@media only screen and (max-width: 360px) {
+    .card {
+        width: 320px;
+    }
+}
+
+@media only screen and (min-width: 540px) {
+    .card {
+        width: 340px;        
+    }
+}
+
+.card {
+    min-width: 300px;
+    display:inline-block;
+    margin: 0 10px 10px 0;
+    background: rgb(245, 244, 244);
+    padding: 0 20px 0 20px;
+    border-radius: 3px;
+}
+
+.card .content {
+    display:flex;
+    flex-direction: row;
+}
+
+.card .content .column {
+    flex-grow: 1;
+}
+
+.card .content .column h1 {
+    margin: 0px;
+    font-size: 2.2rem;
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    width: 100%;    
+}   
+
+.card .content .column h3 {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0px;
+    font-size: 1rem;
+    height: 50px;
+    width: 100%;    
+}   
+
+.alert-success {
+    color: #3c763d
+}
+
+.alert-info {
+    color: #31708f
+}
+
+.alert-warn {
+    color: #8a6d3b
+}
+
+.alert-danger {
+    color: #a94442
+}
