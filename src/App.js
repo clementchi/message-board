@@ -1,20 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import MessageList from './component/MessageList';
+import * as contextAction from './actions/contextAction';
 import './App.css';
-import MessageCard from './component/MessageCard';
 
 class App extends Component {
+  componentDidMount (){
+    this.props.getContext();
+  }
   render() {
     return (
       <div className="app">
-        <MessageCard origin="7085 Briza loop San Ramon,CA" destination="Pleasant Hill, CA" showOrigin={false}/>
-        <MessageCard origin="7085 Briza loop San Ramon,CA" destination="Alameda, CA" showOrigin={false}/>
-        <MessageCard origin="7085 Briza loop San Ramon,CA" destination="Pinole, CA" showOrigin={false}/>
-        <MessageCard origin="7085 Briza loop San Ramon,CA" destination="Walnut Creek, CA" showOrigin={false}/>
-        <MessageCard origin="7085 Briza loop San Ramon,CA" destination="Castro Valley, CA" showOrigin={false}/>
-        <MessageCard origin="7085 Briza loop San Ramon,CA" destination="Pleasanton, CA" showOrigin={false}/>
+        <MessageList/>
       </div>
     );
   }
 }
 
-export default App;
+// Maps state from store to props
+const mapStateToProps = (state, ownProps) => {
+  return {
+    // You can now say this.props.context
+    context: state.context
+  }
+};
+
+// Maps actions to props
+const mapDispatchToProps = (dispatch) => {
+  return {
+  // You can now say this.props.setContext
+    getContext: () => {
+      dispatch(contextAction.getContext())
+    }
+  }
+};
+
+// Use connect to put them together
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -8,7 +8,14 @@ class TravelWeatherService extends Component {
 
   getData(){
     let _this = this;
-    fetch(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${this.props.destination}")&format=json&env=store://datatables.org/alltableswithkeys`)
+    let url = '';
+    if (this.props.context && this.props.context.coords){
+      url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places where text="(${this.props.context.coords.latitude}, ${this.props.context.coords.longitude})")&format=json&env=store://datatables.org/alltableswithkeys`
+    }
+    else {
+      url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${this.props.destination}")&format=json&env=store://datatables.org/alltableswithkeys`
+    }
+    fetch(url)
       .then(response => {
         return response.json();
       }).then(data=>{

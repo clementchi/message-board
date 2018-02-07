@@ -4,8 +4,9 @@ class TravelTimeService extends Component {
   getData(){
     let _this = this;
     var service = new window.google.maps.DistanceMatrixService();
+    var originLatLng = new window.google.maps.LatLng(this.props.context.coords.latitude, this.props.context.coords.longitude);
     service.getDistanceMatrix({
-      origins: [this.props.origin],
+      origins: [originLatLng],
       destinations: [this.props.destination],
       travelMode: window.google.maps.TravelMode.DRIVING,
       unitSystem: window.google.maps.UnitSystem.IMPERIAL,
