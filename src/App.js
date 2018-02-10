@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MessageList from './component/MessageList';
-import * as contextAction from './actions/contextAction';
+import * as contextAction from './reduxActionReducer/contextActionReducer';
 import './App.css';
 
 class App extends Component {
