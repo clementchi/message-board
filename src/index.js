@@ -20,7 +20,7 @@ import './index.css';
 import App from './App';
 
 // inital context
-const store = configureStore()
+const store = configureStore();
 ReactDOM.render (
   <Provider store={store}>
     <div>

@@ -2,7 +2,7 @@
 export const getTripDuration = (context, destinationAddress) => {
     return (dispatch) => {
         var service = new window.google.maps.DistanceMatrixService();
-        var originLatLng = new window.google.maps.LatLng(context.coords.latitude, context.coords.longitude);
+        var originLatLng = new window.google.maps.LatLng(context.latitude, context.longitude);
         service.getDistanceMatrix({
           origins: [originLatLng],
           destinations: [destinationAddress],
@@ -14,7 +14,7 @@ export const getTripDuration = (context, destinationAddress) => {
             departureTime: new Date()
           }
         }, function(tripDurationInfo){
-            dispatch(getTripDurationSuccess(getTripKey(context.coords.latitude,context.coords.longitude,destinationAddress), tripDurationInfo));
+            dispatch(getTripDurationSuccess(getTripKey(context.latitude,context.longitude,destinationAddress), tripDurationInfo));
         });
         }
 }
@@ -30,6 +30,10 @@ export function getTripDurationSuccess(tripKey, tripDuration) {
 
 export function getTripKey(latitude, longitude, destinationAddress){
   return `${latitude}${longitude}${destinationAddress}`
+}
+
+export function resolveTripResponseFromProp(props, tripKey){
+  return props.trip[tripKey] || null;
 }
 
 // reducer to return a state

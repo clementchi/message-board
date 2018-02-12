@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import './MessageCard.css';
+import './Card.css';
 import { connect } from 'react-redux';
 import * as weatherAction from '../reduxActionReducer/weatherActionReducer';
 import * as tripAction from '../reduxActionReducer/tripActionReducer';
 
 class TripInfoCard extends Component {
-  constructor (props){
-    super(props);
+  componentDidMount(){
     this.props.getWeather(this.props.destination);
-    this.props.getTripDuration(this.props.context, this.props.destination)
+    this.getData();    
   }
-
+  getData(){
+    this.props.getTripDuration(this.props.context, this.props.destination);
+    window.setTimeout(()=>{
+      this.getData();
+    }, 300000);
+  } 
   render(){
-    let tripKey = tripAction.getTripKey(this.props.context.coords.latitude,this.props.context.coords.longitude,this.props.destination);
+    let tripKey = tripAction.getTripKey(this.props.context.latitude,this.props.context.longitude,this.props.destination);
     if (!this.props.weather[this.props.destination]){
       return null;
     }
@@ -25,8 +29,6 @@ class TripInfoCard extends Component {
     let weatherResponse = this.props.weather[this.props.destination];
     let trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
     let duration = tripResponse.rows[0].elements[0].duration_in_traffic.text;
-    // let distance = tripResponse.rows[0].elements[0].distance.text;
-    // let date = weatherResponse.query.results.channel.item.condition.date;
     let temperature = weatherResponse.query.results.channel.item.condition.temp;
     let conditionText = weatherResponse.query.results.channel.item.condition.text;
 

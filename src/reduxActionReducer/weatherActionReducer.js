@@ -1,24 +1,33 @@
 // action creator;
-export const getWeather = (context) => {
+export const getWeather = (location) => {
     return (dispatch) => {
         let url = '';
-        let location = '';
-        if (context && context.coords){
-          location = `${context.coords.latitude}${context.coords.longitude}`;
-          url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places where text="(${context.coords.latitude}, ${context.coords.longitude})")&format=json&env=store://datatables.org/alltableswithkeys`
+        let weatherKey = '';
+        if (location.latitude){
+          weatherKey = `${location.latitude}${location.longitude}`;
+          url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places where text="(${location.latitude}, ${location.longitude})")&format=json&env=store://datatables.org/alltableswithkeys`
         }
         else {
-          location = context;
-          url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${context}")&format=json&env=store://datatables.org/alltableswithkeys`
+          weatherKey = location.replace(/#/g, '');
+          url = `https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="${weatherKey}")&format=json&env=store://datatables.org/alltableswithkeys`
         }
         fetch(url)
           .then(response => {
             return response.json();
           }).then(weatherInfo=>{
-            dispatch(getWeatherSuccess(location, weatherInfo));
+            dispatch(getWeatherSuccess(weatherKey, weatherInfo));
             return ('')
           });
     }
+}
+
+export function resolveWeatherFromProps(props){
+  let weatherKey = `${props.context.latitude}${props.context.longitude}`
+  let weatherResponse = props.weather[weatherKey] || null;
+  if (weatherResponse){
+    return weatherResponse.query.results.channel.item.condition
+  }
+  return null;
 }
 
 export function getWeatherSuccess(location, weatherInfo) {

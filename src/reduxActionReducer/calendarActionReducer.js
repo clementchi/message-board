@@ -1,13 +1,13 @@
 // action creator;
-export const getCalendarEvents = () => {
+export const getCalendarEvents = (minTime, maxTime) => {
     return (dispatch) => {
-        fetch(`https://www.googleapis.com/calendar/v3/calendars/sanramonrobot@gmail.com/events?key=AIzaSyDWhkvTlg4cP6V1hePNDfwbMhwOlZlrCiU`)
-          .then(response => {
-            return response.json();
-          }).then(data=>{
-            dispatch(getCalendarEventsSuccess(data));
-            return ('')
-          });
+      window.gapi.client.request({
+        'path': `https://www.googleapis.com/calendar/v3/calendars/sanramonrobot@gmail.com/events?timeMin=${minTime.toISOString()}&timeMax=${maxTime.toISOString()}&orderBy=startTime&singleEvents=true`
+      }).then(function(response) {
+        dispatch(getCalendarEventsSuccess(response.result));
+      }, function(reason) {
+        console.log('Error: ' + reason.result.error.message);
+      }); 
     }
 }
 

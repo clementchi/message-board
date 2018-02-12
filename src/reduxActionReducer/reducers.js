@@ -4,10 +4,14 @@ import context from './contextActionReducer'
 import events from './calendarActionReducer'
 import trip from './tripActionReducer'
 import weather from './weatherActionReducer'
+import user from './userActionReducer'
+import airQuality from './airQualityActionReducer'
 
 export default combineReducers({
+  user: user,
   context: context,
   events: events,
   trip: trip,
-  weather: weather
+  weather: weather,
+  airQuality: airQuality
 });

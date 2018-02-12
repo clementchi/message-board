@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Card.css';
 import * as weatherAction from '../reduxActionReducer/weatherActionReducer';
+import * as airQualityAction from '../reduxActionReducer/airQualityActionReducer';
 
 class LocalInfoCard extends Component {
-    constructor(props){
-        super(props);
-        this.props.getWeather(this.props.context);
+    componentDidMount(){
+        this.getData();
     }
+    getData(){
+        this.props.getWeather(this.props.context);
+        this.props.getAirQuality(this.props.context);
+        window.setTimeout(()=>{
+          this.getData();
+        }, 300000);
+    }     
     render(){
-        if (this.props.weather.query){
+        let weatherResponse = weatherAction.resolveWeatherFromProps(this.props);
+        let airQualityResponse = airQualityAction.resolveAirQualityFromProps(this.props);
+        if (weatherResponse && airQualityResponse){
+            let temperature = weatherResponse.temp;
+            let conditionText = weatherResponse.text;
+            let pm25Value = airQualityResponse.value;
+
             return (
-                <div>
-                    Weather
-                    {this.props.weather.query.results.channel.item.condition.date}
-                    {this.props.weather.query.results.channel.item.condition.temp}
-                    {this.props.weather.query.results.channel.item.condition.text}
+                <section className="card">     
+                <h3>{new Date().toLocaleTimeString()}</h3>
+                <div className="content">
+                  <div className="column">
+                    <h3>{conditionText} {temperature} F</h3>
+                  </div>                        
+                  <div className="column">
+                    <h3>PM2.5 ({pm25Value})</h3>
+                  </div>                                          
                 </div>
+              </section>
             )
-    
         }
         return null;
     }
@@ -26,17 +44,21 @@ class LocalInfoCard extends Component {
 // Maps state from store to props
 const mapStateToProps = (state, ownProps) => {
   return {
-    weather: state.weather
+    weather: state.weather,
+    airQuality: state.airQuality
   }
 };
 
 // Maps actions to props
 const mapDispatchToProps = (dispatch) => {
-  return {
-    getWeather: (context) => {
-      dispatch(weatherAction.getWeather(context))
-    }
-  }
+    return {
+        getWeather: (context) => {
+            dispatch(weatherAction.getWeather(context));
+        },
+        getAirQuality: (context)=> {
+            dispatch(airQualityAction.getAirQuality(context));
+        } 
+    } 
 };
 
 // Use connect to put them together

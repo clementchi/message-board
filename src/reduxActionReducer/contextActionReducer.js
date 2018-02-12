@@ -2,8 +2,13 @@
 export const getContext = () => {
     return (dispatch) => {
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition((position) => {
-                dispatch(getContextSuccess(position))
+            navigator.geolocation.getCurrentPosition((position) => {
+                let pos = {
+                    latitude: +parseFloat(position.coords.latitude).toFixed(4),
+                    longitude: +parseFloat(position.coords.longitude).toFixed(4),
+                    timestamp: position.timestamp
+                }
+                dispatch(getContextSuccess(pos))
             });
         }
     }
@@ -16,11 +21,18 @@ export function getContextSuccess(context) {
     };
 }
 
+export function isContextDefined(props){
+    if (!props.context.latitude){
+        return;
+    }
+    return true;    
+}
+
 // reducer to return a state
 export default (state = {}, action) => {
     switch (action.type){
       case 'GET_CONTEXT_SUCCESS':
-        return action.state;
+        return Object.assign({}, state, action.state);
       default:
         return state;
     }
