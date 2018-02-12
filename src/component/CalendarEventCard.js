@@ -6,9 +6,15 @@ import * as weatherAction from '../reduxActionReducer/weatherActionReducer';
 
 class CalendarEventCard extends Component {
     componentDidMount(){
+        this.getData();
+    }
+    getData(){
         this.props.getTripDuration(this.props.context, this.props.event.location);
         this.props.getWeather(this.props.event.location);
-    }
+        window.setTimeout(()=>{
+          this.getData();
+        }, 300000);
+    }     
     resolveWeatherResponse(){
         return this.props.weather[this.props.event.location] || null;
     }    
