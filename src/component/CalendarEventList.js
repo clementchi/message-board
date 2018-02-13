@@ -11,7 +11,7 @@ class CalendarEventList extends Component {
     getData(){
         let minTime = new Date();
         let maxTime = new Date();
-        maxTime.setHours(minTime.getHours() + 24);
+        maxTime.setHours(minTime.getHours() + 12);
         this.props.getEvents(minTime, maxTime);
         window.setTimeout(()=>{
           this.getData();
