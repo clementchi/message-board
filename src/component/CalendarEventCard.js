@@ -26,6 +26,7 @@ class CalendarEventCard extends Component {
         let conditionText = '-';
         let delayStyle;
         let location = 'Unknown location';
+        let startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString();
 
         if (eventInfo.location){
           location = eventInfo.location;
@@ -53,8 +54,9 @@ class CalendarEventCard extends Component {
           }  
         }  
         return (
-          <section className="card">     
-            <h3>{eventInfo.summary}</h3>
+          <section className="card">   
+            <h3 className="header">{eventInfo.summary}</h3>
+            <p><i className="fa fa-clock-o"></i> {startTime}</p>
             <p><i className="fa fa-map-marker"></i> {location}</p>
             <div className="content">
               <div className="column">
