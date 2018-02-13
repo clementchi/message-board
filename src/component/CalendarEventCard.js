@@ -14,13 +14,10 @@ class CalendarEventCard extends Component {
         window.setTimeout(()=>{
           this.getData();
         }, 300000);
-    }     
-    resolveWeatherResponse(){
-        return this.props.weather[this.props.event.location] || null;
-    }    
+    }       
     render(){
         let eventInfo = this.props.event;
-        let weatherResponse = weatherAction.resolveWeatherFromProps(this.props);
+        let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, this.props.event.location.replace(/#/g,''));
         let tripKey = tripAction.getTripKey(this.props.context.latitude, this.props.context.longitude, this.props.event.location);
         let tripResponse = tripAction.resolveTripResponseFromProp(this.props, tripKey);        
         if (eventInfo && tripResponse && weatherResponse){

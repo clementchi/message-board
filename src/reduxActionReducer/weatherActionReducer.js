@@ -21,8 +21,7 @@ export const getWeather = (location) => {
     }
 }
 
-export function resolveWeatherFromProps(props){
-  let weatherKey = `${props.context.latitude}${props.context.longitude}`
+export function resolveWeatherFromProps(props, weatherKey){
   let weatherResponse = props.weather[weatherKey] || null;
   if (weatherResponse){
     return weatherResponse.query.results.channel.item.condition

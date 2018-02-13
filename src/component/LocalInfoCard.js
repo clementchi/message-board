@@ -16,7 +16,7 @@ class LocalInfoCard extends Component {
         }, 300000);
     }     
     render(){
-        let weatherResponse = weatherAction.resolveWeatherFromProps(this.props);
+        let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, `${this.props.context.latitude}${this.props.context.longitude}`);
         let airQualityResponse = airQualityAction.resolveAirQualityFromProps(this.props);
         if (weatherResponse && airQualityResponse){
             let temperature = weatherResponse.temp;
