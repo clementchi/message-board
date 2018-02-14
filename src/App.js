@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CalendarEventList from './component/CalendarEventList';
-import LocalInfoCard from './component/LocalInfoCard';
+import CalendarEventList from './container/CalendarEventList';
+import LocalInfoContainer from './container/LocalInfoContainer';
 import * as contextAction from './reduxActionReducer/contextActionReducer';
 import * as userAction from './reduxActionReducer/userActionReducer';
 import './App.css';
@@ -62,7 +62,7 @@ class App extends Component {
       if (contextAction.isContextDefined(this.props)){
         return (        
           <div className="app">
-            <LocalInfoCard context={this.props.context}></LocalInfoCard>
+            <LocalInfoContainer context={this.props.context}></LocalInfoContainer>
             <CalendarEventList context={this.props.context}></CalendarEventList>
           </div>
         )  

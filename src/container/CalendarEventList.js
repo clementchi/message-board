@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import MessageCard from './MessageCard';
-import CalendarEventCard from './CalendarEventCard';
+import CalendarEventContainer from '../container/CalendarEventContainer';
 import * as calendarAction from '../reduxActionReducer/calendarActionReducer';
 
 class CalendarEventList extends Component {
@@ -22,7 +22,7 @@ class CalendarEventList extends Component {
             let events = this.props.events.items;
             return events.map((event)=>{
                 return (
-                    <CalendarEventCard className="card" key={event.id} event={event}></CalendarEventCard>
+                    <CalendarEventContainer key={event.id} data={event}></CalendarEventContainer>
                 )
             });
         }

@@ -1,24 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './Card.css';
-import * as tripAction from '../reduxActionReducer/tripActionReducer';
-import * as weatherAction from '../reduxActionReducer/weatherActionReducer';
 
-class CalendarEventCard extends Component {
-    componentDidMount(){
-      if (this.props.event.location){
-        this.getData();          
-      }
-    }
-    getData(){
-        this.props.getTripDuration(this.props.context, this.props.event.location);
-        this.props.getWeather(this.props.event.location);
-        window.setTimeout(()=>{
-          this.getData();
-        }, 300000);
-    }       
+class CalendarEventCard extends Component {      
     render(){
-        let eventInfo = this.props.event;
+        let eventInfo = this.props.data.event;
         let duration = '-';
         let trafficDelay = '-';
         let reportTime = new Date().toLocaleTimeString();
@@ -30,14 +15,13 @@ class CalendarEventCard extends Component {
 
         if (eventInfo.location){
           location = eventInfo.location;
-          let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, eventInfo.location.replace(/#/g,''));
-          let tripKey = tripAction.getTripKey(this.props.context.latitude, this.props.context.longitude, eventInfo.location);
-          let tripResponse = tripAction.resolveTripResponseFromProp(this.props, tripKey);        
+          let weatherResponse = this.props.data.weather;
+          let tripResponse = this.props.data.trip;
           if (eventInfo && tripResponse && weatherResponse){
               duration = tripResponse.rows[0].elements[0].duration_in_traffic.text;
               trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
-              temperature = weatherResponse.temp;
-              conditionText = weatherResponse.text;
+              temperature = weatherResponse.item.condition.temp;
+              conditionText = weatherResponse.item.condition.text;
               
               if (trafficDelay > 20){
                 delayStyle = 'alert-danger';
@@ -72,27 +56,6 @@ class CalendarEventCard extends Component {
     }
 }
 
-// Maps state from store to props
-const mapStateToProps = (state, ownProps) => {
-  return {
-    trip: state.trip,
-    context: state.context,
-    weather: state.weather
-  }
-};
-
-// Maps actions to props
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getTripDuration: (context, destination) => {
-        dispatch(tripAction.getTripDuration(context, destination))
-    },
-    getWeather: (destination) => {
-        dispatch(weatherAction.getWeather(destination))
-    }
-  }
-};
-
 // Use connect to put them together
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarEventCard);
+export default CalendarEventCard;
 
