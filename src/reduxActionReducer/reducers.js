@@ -1,11 +1,12 @@
 // ./src/reducers/index.js
 import { combineReducers } from 'redux';
-import context from './contextActionReducer'
-import events from './calendarActionReducer'
-import trip from './tripActionReducer'
-import weather from './weatherActionReducer'
-import user from './userActionReducer'
-import airQuality from './airQualityActionReducer'
+import context from './contextActionReducer';
+import events from './calendarActionReducer';
+import trip from './tripActionReducer';
+import weather from './weatherActionReducer';
+import user from './userActionReducer';
+import airQuality from './airQualityActionReducer';
+import bartSchedule from './bartScheduleActionReducer';
 
 export default combineReducers({
   user: user,
@@ -13,5 +14,6 @@ export default combineReducers({
   events: events,
   trip: trip,
   weather: weather,
-  airQuality: airQuality
+  airQuality: airQuality,
+  bartSchedule: bartSchedule
 });

@@ -54,13 +54,16 @@ class LocalInfoCard extends Component {
             let lo = weatherResponse.item.forecast[0].low;
             let wind = weatherResponse.wind.speed;
             let dir = weatherResponse.wind.direction;
+            let humidity = weatherResponse.atmosphere.humidity;
+            let localCity = weatherResponse.location.city;
             let dirText = this.getWindDirText(dir);
+
 
             // let pm25Value = airQualityResponse.value;
 
             return (
                 <section className="card">     
-                <h3>Local weather condition</h3>
+                <h3>{localCity} weather condition</h3>
                 <div className="content">
                   <div className="column">
                     <h3>{conditionText} {temperature} F</h3>
@@ -70,7 +73,10 @@ class LocalInfoCard extends Component {
                   </div> 
                   <div className="column">
                     <h3>{wind} mph {dirText}</h3>
-                  </div>                                                            
+                  </div> 
+                  <div className="column">
+                    <h3>{humidity} %</h3>
+                  </div>                                                                              
                 </div>
                 <p>{new Date().toLocaleTimeString()}</p>
               </section>

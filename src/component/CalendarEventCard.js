@@ -12,6 +12,17 @@ class CalendarEventCard extends Component {
         let delayStyle;
         let location = 'Unknown location';
         let startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString();
+        let trainInfo = [];
+        let mapUrl;
+        if (Object.keys(this.props.data.bart).length > 0){
+          trainInfo = Object.keys(this.props.data.bart).map((destination)=>{
+            return (
+              <tr key={destination}>
+                <td><i className="fa fa-subway"></i> {destination}</td><td>{this.props.data.bart[destination].toLocaleTimeString()}</td>
+              </tr>
+            )
+          });
+        }
 
         if (eventInfo.location){
           location = eventInfo.location;
@@ -22,6 +33,7 @@ class CalendarEventCard extends Component {
               trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
               temperature = weatherResponse.item.condition.temp;
               conditionText = weatherResponse.item.condition.text;
+              mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${location}`;
               
               if (trafficDelay > 20){
                 delayStyle = 'alert-danger';
@@ -41,7 +53,10 @@ class CalendarEventCard extends Component {
           <section className="card">   
             <h3 className="header">{eventInfo.summary}</h3>
             <p><i className="fa fa-clock-o"></i> {startTime}</p>
-            <p><i className="fa fa-map-marker"></i> {location}</p>
+            <p><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
+            <table>
+            {trainInfo}
+            </table>
             <div className="content">
               <div className="column">
                 <h1 className={delayStyle}>{duration}</h1>
