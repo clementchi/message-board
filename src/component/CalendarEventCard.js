@@ -11,7 +11,7 @@ class CalendarEventCard extends Component {
         let conditionText = '-';
         let delayStyle;
         let location = 'Unknown location';
-        let startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString();
+        let startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'});
         let trainInfo = [];
         let mapUrl;
         if (Object.keys(this.props.data.bart).length > 0){

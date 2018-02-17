@@ -43,11 +43,22 @@ class LocalInfoCard extends Component {
         }  
         return dirText;
     }
-    render(){
-        if (this.props.data.weather && this.props.data.airQuality){
-            let weatherResponse = this.props.data.weather;
-            // let airQualityResponse = this.props.airQuality;
+    /**
+     * Radar image only show up when there is shower, thunderstorm
+     */
+    shouldShowRadar(weatherCode, lat, lng){
+        if (![20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 44, 3200].indexOf(weatherCode)){
+            return (
+                <section className="card fill" >     
+                    <img alt="radar" src={`http://api.wunderground.com/api/16bbc144197b4fff/radar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=280&newmaps=1`}></img>
+                </section>
+            )
+        }
+    }
 
+    render(){
+        if (this.props.data.weather){
+            let weatherResponse = this.props.data.weather;
             let temperature = weatherResponse.item.condition.temp;
             let conditionText = weatherResponse.item.condition.text;
             let hi = weatherResponse.item.forecast[0].high;
@@ -57,9 +68,11 @@ class LocalInfoCard extends Component {
             let humidity = weatherResponse.atmosphere.humidity;
             let localCity = weatherResponse.location.city;
             let dirText = this.getWindDirText(dir);
+            let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.lat, weatherResponse.item.long);
             // let pm25Value = airQualityResponse.value;
 
             return (
+                <React.Fragment>
                 <section className="card">     
                 <h3>{localCity} weather condition</h3>
                 <div className="content">
@@ -88,6 +101,8 @@ class LocalInfoCard extends Component {
                 </div>
                 <p className="footer">Last update {new Date().toLocaleTimeString()}</p>
               </section>
+              {radarCard}
+              </React.Fragment>
             )
         }
         return null;

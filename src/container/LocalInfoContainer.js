@@ -11,7 +11,7 @@ class LocalInfoContainer extends Component {
     }
     getData(){
         this.props.getWeather(this.props.context);
-        this.props.getAirQuality(this.props.context);
+        // this.props.getAirQuality(this.props.context);
         this.timeoutRef = window.setTimeout(()=>{
           this.getData();
         }, 300000);
@@ -24,11 +24,10 @@ class LocalInfoContainer extends Component {
     }    
     render(){
         let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, `${this.props.context.latitude}${this.props.context.longitude}`);
-        let airQualityResponse = airQualityAction.resolveAirQualityFromProps(this.props);
-        if (weatherResponse && airQualityResponse){
+        // let airQualityResponse = airQualityAction.resolveAirQualityFromProps(this.props);
+        if (weatherResponse){
             let data = {
-                weather: weatherResponse,
-                airQuality: airQualityResponse
+                weather: weatherResponse
             }
 
             return (

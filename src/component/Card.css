@@ -53,6 +53,10 @@
     border-radius: 3px;
 }
 
+.card.fill {
+    padding: 0px;
+}
+
 .card .content {
     display:flex;
     flex-direction: row;
