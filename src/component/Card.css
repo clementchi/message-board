@@ -1,20 +1,28 @@
 @media only screen and (min-width: 360px) {
     .card {
-        width: 320px;
+        width: 90%;
     }
     .card .content .column h1 {
-        height: 60px;
+        height: 40px;
         font-size: 2rem !important;
     }
     .card .content .column h3 {
-        height: 60px;
+        height: 40px;
         font-size: 1rem !important;
-    }    
+    }  
+    .card .content .column h4 {
+        height: 5px;
+        font-size: 0.9rem !important;
+    }
+    .card .content .column h5 {
+        height: 40px;
+        font-size: 0.8rem !important;
+    }       
 }
 
 @media only screen and (min-width: 540px) {
     .card {
-        width: 570px;
+        width: 600px;
         height: 280px;      
     }
     .card .content .column h1 {
@@ -25,6 +33,14 @@
         height: 70px;
         font-size: 1.5rem !important;
     }
+    .card .content .column h4 {
+        height: 10px;
+        font-size: 1.2rem !important;
+    }
+    .card .content .column h5 {
+        height: 70px;
+        font-size: 1rem !important;
+    }    
 }
 
 .card {
@@ -40,6 +56,7 @@
 .card .content {
     display:flex;
     flex-direction: row;
+    margin-bottom: 10px;
 }
 
 .card .content.secondary {
@@ -72,8 +89,10 @@
 }   
 
 .card .footer {
+    display: block;
     font-size: 0.7rem;
     position: absolute;
+    margin-top: 5px;
     bottom: 0px
 }
 

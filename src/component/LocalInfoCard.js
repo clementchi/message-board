@@ -85,10 +85,6 @@ class LocalInfoCard extends Component {
                         <h4>{weatherResponse.item.forecast[2].day}</h4>
                         <h5>{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high} F / {weatherResponse.item.forecast[2].low} F</h5> 
                     </div>
-                    <div className="column">
-                        <h4>{weatherResponse.item.forecast[3].day}</h4>
-                        <h5>{weatherResponse.item.forecast[3].text}  {weatherResponse.item.forecast[3].high} F / {weatherResponse.item.forecast[3].low} F</h5> 
-                    </div>                                        
                 </div>
                 <p className="footer">Last update {new Date().toLocaleTimeString()}</p>
               </section>

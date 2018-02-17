@@ -59,7 +59,6 @@ class CalendarEventCard extends Component {
                 {trainInfo}
               </tbody>
             </table>
-            <br/>
             <div className="content">              
               <div className="column">
                 <h1 className={delayStyle}>{duration}</h1>
