@@ -17,6 +17,9 @@ class LocalInfoContainer extends Component {
         }, 300000);
     } 
     componentWillReceiveProps(nextProps){
+        if (!nextProps.context.latitude || !nextProps.context.longitude){
+            return;
+        }
         if (this.props.context.latitude !== nextProps.context.latitude || this.props.context.longitude !== nextProps.context.longitude){
             clearTimeout(this.timeoutRef);
             this.getData();        
