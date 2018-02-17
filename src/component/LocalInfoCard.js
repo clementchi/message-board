@@ -48,7 +48,7 @@ class LocalInfoCard extends Component {
      */
     shouldShowRadar(weatherCode, lat, lng){
         // if (![20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 44, 3200].indexOf(weatherCode)){
-            let url = `https://api.wunderground.com/api/16bbc144197b4fff/radar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=280&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=300&smooth=1&bust=${Math.floor(Math.random() * Math.floor(100))}`;
+            let url = `https://api.wunderground.com/api/16bbc144197b4fff/radar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&bust=${Math.floor(Math.random() * Math.floor(100))}`;
             return (
                 <section id="radar" className="card fill" >     
                     <img alt="radar" width="100%" src={url}></img>
