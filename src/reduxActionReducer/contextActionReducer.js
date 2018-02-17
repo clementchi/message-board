@@ -4,8 +4,8 @@ export const getContext = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 let pos = {
-                    latitude: +parseFloat(position.coords.latitude).toFixed(4),
-                    longitude: +parseFloat(position.coords.longitude).toFixed(4),
+                    latitude: +parseFloat(position.coords.latitude).toFixed(2),
+                    longitude: +parseFloat(position.coords.longitude).toFixed(2),
                     timestamp: position.timestamp
                 }
                 dispatch(getContextSuccess(pos))
