@@ -17,6 +17,14 @@ class App extends Component {
     this.props.getContext();
     this.getGoogleToken();
   }
+  componentDidMount(){
+    document.addEventListener('visibilitychange', ()=>{
+      if (document.visibilityState === 'visible'){
+        // update context
+        this.props.getContext();
+      }
+    });
+  }
   getGoogleToken(){
     let _this = this;
     window.gapi.load('client:auth2', function(){

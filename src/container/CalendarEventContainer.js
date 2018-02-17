@@ -7,11 +7,11 @@ import CalendarEventCard from '../component/CalendarEventCard';
 
 class CalendarEventContainer extends Component {
     componentDidMount(){
-      if (this.props.data.location){
-        let bartStationId = bartAction.getBartStationId(this.props.data.location);
-        this.bartStationId = bartStationId
-        this.getData();          
-      }
+        if (this.props.data.location){
+            let bartStationId = bartAction.getBartStationId(this.props.data.location);
+            this.bartStationId = bartStationId
+            this.getData();          
+        }  
     }
     getData(){
         this.props.getTripDuration(this.props.context, this.props.data.location);

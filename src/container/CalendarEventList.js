@@ -13,10 +13,16 @@ class CalendarEventList extends Component {
         let maxTime = new Date();
         maxTime.setHours(minTime.getHours() + 12);
         this.props.getEvents(minTime, maxTime);
-        window.setTimeout(()=>{
+        this.timeoutRef = window.setTimeout(()=>{
           this.getData();
         }, 300000);
     }    
+    componentWillReceiveProps(nextProps){
+        if (this.props.context.latitude !== nextProps.context.latitude || this.props.context.longitude !== nextProps.context.longitude){
+            clearTimeout(this.timeoutRef);
+            this.getData();        
+        }
+    }     
     resolveEventCards(){
         if (this.props.events.items){
             let events = this.props.events.items;
