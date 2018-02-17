@@ -22,7 +22,7 @@
 
 @media only screen and (min-width: 540px) {
     .card {
-        width: 600px;
+        width: 570px;
         height: 280px;      
     }
     .card .content .column h1 {
