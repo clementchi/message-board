@@ -55,9 +55,12 @@ class CalendarEventCard extends Component {
             <p><i className="fa fa-clock-o"></i> {startTime}</p>
             <p><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
             <table>
-            {trainInfo}
+              <tbody>
+                {trainInfo}
+              </tbody>
             </table>
-            <div className="content">
+            <br/>
+            <div className="content">              
               <div className="column">
                 <h1 className={delayStyle}>{duration}</h1>
               </div>
@@ -65,7 +68,7 @@ class CalendarEventCard extends Component {
                 <h3>{conditionText} {temperature} F</h3>
               </div>                        
             </div>
-            <p>{reportTime}</p>     
+            <p className="footer">Last update {reportTime}</p>     
           </section>
         );              
     }

@@ -14,7 +14,8 @@
 
 @media only screen and (min-width: 540px) {
     .card {
-        width: 570px;        
+        width: 570px;
+        height: 280px;      
     }
     .card .content .column h1 {
         height: 70px;
@@ -27,6 +28,7 @@
 }
 
 .card {
+    position: relative;
     min-width: 320px;
     display:inline-block;
     margin: 0 10px 10px 0;
@@ -38,6 +40,10 @@
 .card .content {
     display:flex;
     flex-direction: row;
+}
+
+.card .content.secondary {
+    padding: 0 5px 0 5px;
 }
 
 .card .content .column {
@@ -64,6 +70,12 @@
     height: 70px;
     width: 100%;    
 }   
+
+.card .footer {
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: 0px
+}
 
 .alert-success {
     color: #3c763d

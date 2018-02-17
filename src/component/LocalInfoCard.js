@@ -57,8 +57,6 @@ class LocalInfoCard extends Component {
             let humidity = weatherResponse.atmosphere.humidity;
             let localCity = weatherResponse.location.city;
             let dirText = this.getWindDirText(dir);
-
-
             // let pm25Value = airQualityResponse.value;
 
             return (
@@ -78,7 +76,21 @@ class LocalInfoCard extends Component {
                     <h3>{humidity} %</h3>
                   </div>                                                                              
                 </div>
-                <p>{new Date().toLocaleTimeString()}</p>
+                <div className="content secondary">                    
+                    <div className="column">
+                        <h4>{weatherResponse.item.forecast[1].day}</h4>
+                        <h5>{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high} F / {weatherResponse.item.forecast[1].low} F</h5> 
+                    </div>
+                    <div className="column">
+                        <h4>{weatherResponse.item.forecast[2].day}</h4>
+                        <h5>{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high} F / {weatherResponse.item.forecast[2].low} F</h5> 
+                    </div>
+                    <div className="column">
+                        <h4>{weatherResponse.item.forecast[3].day}</h4>
+                        <h5>{weatherResponse.item.forecast[3].text}  {weatherResponse.item.forecast[3].high} F / {weatherResponse.item.forecast[3].low} F</h5> 
+                    </div>                                        
+                </div>
+                <p className="footer">Last update {new Date().toLocaleTimeString()}</p>
               </section>
             )
         }
