@@ -1,6 +1,6 @@
 @media only screen and (min-width: 360px) {
     .card {
-        width: 90%;
+        width: 100%;
     }
     .card .content .column h1 {
         height: 40px;
