@@ -50,7 +50,7 @@ class LocalInfoCard extends Component {
         // if (![20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 44, 3200].indexOf(weatherCode)){
             let url = `https://api.wunderground.com/api/16bbc144197b4fff/radar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=280&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=270&smooth=1&bust=${Math.floor(Math.random() * Math.floor(100))}`;
             return (
-                <section className="card fill" >     
+                <section id="radar" className="card fill" >     
                     <img alt="radar" width="100%" src={url}></img>
                 </section>
             )
@@ -81,7 +81,7 @@ class LocalInfoCard extends Component {
                     <h3>{conditionText} {temperature} F</h3>
                   </div>                        
                   <div className="column">
-                    <h3>{hi} F / {lo} F</h3>
+                    <h3>{hi} / {lo} F</h3>
                   </div> 
                   <div className="column">
                     <h3>{wind} mph {dirText}</h3>
@@ -93,11 +93,11 @@ class LocalInfoCard extends Component {
                 <div className="content secondary">                    
                     <div className="column">
                         <h4>{weatherResponse.item.forecast[1].day}</h4>
-                        <h5>{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high} F / {weatherResponse.item.forecast[1].low} F</h5> 
+                        <h5>{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high} / {weatherResponse.item.forecast[1].low} F</h5> 
                     </div>
                     <div className="column">
                         <h4>{weatherResponse.item.forecast[2].day}</h4>
-                        <h5>{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high} F / {weatherResponse.item.forecast[2].low} F</h5> 
+                        <h5>{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high} / {weatherResponse.item.forecast[2].low} F</h5> 
                     </div>
                 </div>
                 <p className="footer">Last update {new Date().toLocaleTimeString()}</p>

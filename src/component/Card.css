@@ -1,11 +1,28 @@
+@media only screen and (max-width: 375px) { 
+    .card {
+        min-width: 375px;
+    } 
+    .card .content.secondary {
+        display: none;
+    } 
+    .card#radar {
+        display:none;
+    }  
+}
+
 @media only screen and (min-width: 360px) {
     .card {
+        min-width: 360px;
         width: 100%;
     }
     .card .content .column h1 {
         height: 40px;
         font-size: 2rem !important;
     }
+    .card .content .column h2 {
+        height: 70px;
+        font-size: 1.3rem !important;
+    }    
     .card .content .column h3 {
         height: 40px;
         font-size: 1rem !important;
@@ -23,23 +40,27 @@
 @media only screen and (min-width: 540px) {
     .card {
         width: 570px;
-        height: 280px;      
+        height: 300px;      
     }
     .card .content .column h1 {
         height: 70px;
-        font-size: 3rem !important;
+        font-size: 3.5rem !important;
     }
+    .card .content .column h2 {
+        height: 70px;
+        font-size: 3rem !important;
+    }    
     .card .content .column h3 {
         height: 70px;
-        font-size: 1.5rem !important;
+        font-size: 1.6rem !important;
     }
     .card .content .column h4 {
         height: 10px;
-        font-size: 1.2rem !important;
+        font-size: 1.3rem !important;
     }
     .card .content .column h5 {
         height: 70px;
-        font-size: 1rem !important;
+        font-size: 1.1rem !important;
     }    
 }
 
