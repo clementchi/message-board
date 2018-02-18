@@ -72,6 +72,19 @@ class LocalInfoCard extends Component {
             let dirText = this.getWindDirText(dir);
             let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.lat, weatherResponse.item.long);
             // let pm25Value = airQualityResponse.value;
+            let tempStyle = '';
+            if (temperature >= 90){
+                tempStyle = 'alert-danger';
+            }
+            else if (temperature >= 80){
+                tempStyle = 'alert-warn';
+            }
+            else if (temperature >= 60){
+                tempStyle = 'alert-success';
+            }            
+            else {
+                tempStyle = 'alert-info';
+            }
 
             return (
                 <React.Fragment>
@@ -81,12 +94,12 @@ class LocalInfoCard extends Component {
                 </div>
                 <div className="body">
                     <div className="content">
-                        <div className="column">
-                            <h1>{temperature} F</h1>
+                        <div className="column">                            
+                            <h1 className={tempStyle}>{temperature} F</h1>
                         </div>
                         <div className="column">
-                            <h4><span className="grey8">{conditionText}</span></h4>
-                            <p className="grey8 secondary">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</p>
+                            <h4><span className="grey4">{conditionText}</span></h4>
+                            <h5 className="grey4 secondary">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</h5>
                         </div>                                                
                     </div>
                     <div className="content secondary gap-lg">                    
