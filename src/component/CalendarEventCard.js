@@ -6,7 +6,7 @@ class CalendarEventCard extends Component {
         let eventInfo = this.props.data.event;
         let duration = '-';
         let trafficDelay = '-';
-        let reportTime = new Date().toLocaleTimeString();
+        // let reportTime = new Date().toLocaleTimeString();
         let temperature;
         let conditionText = '-';
         let delayStyle;
@@ -78,12 +78,12 @@ class CalendarEventCard extends Component {
                 </h3>
               </div>                        
             </div>
-            <table className="content gap--">
+            <table className="content gap-- secondary">
               <tbody>
                 {trainInfo}
               </tbody>
             </table>
-            <p className="footer">Last update {reportTime}</p>     
+            {/* <p className="footer">Last update {reportTime}</p>      */}
           </section>
         );              
     }
