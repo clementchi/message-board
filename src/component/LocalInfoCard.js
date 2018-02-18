@@ -82,13 +82,14 @@ class LocalInfoCard extends Component {
                 <div className="body">
                     <div className="content">
                         <div className="column">
-                            <h3>{conditionText} {temperature} F</h3>
+                            <h1>{temperature} F</h1>
                         </div>
-                        <div className="column secondary">
-                            <h4 className="grey8">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</h4>
-                        </div>
+                        <div className="column">
+                            <h4><span className="grey8">{conditionText}</span></h4>
+                            <p className="grey8 secondary">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</p>
+                        </div>                                                
                     </div>
-                    <div className="content secondary gap">                    
+                    <div className="content secondary gap-lg">                    
                         <div className="column">
                             <h4 className="grey8">{weatherResponse.item.forecast[1].day}</h4>
                             <h5 className="grey6">{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high}/{weatherResponse.item.forecast[1].low} F</h5> 
