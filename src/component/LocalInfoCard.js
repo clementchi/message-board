@@ -48,14 +48,15 @@ class LocalInfoCard extends Component {
      */
     shouldShowRadar(weatherCode, lat, lng){
         // if (![20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 44, 3200].indexOf(weatherCode)){
-            let url = `https://api.wunderground.com/api/16bbc144197b4fff/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(100))}`;
+            let url = `https://api.wunderground.com/api/16bbc144197b4fff/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
             return (
                 <section id="radar" className="card fill" >     
-                    <img alt="radar" width="100%" src={url}></img>
+                    <img ref='img' alt="radar" width="100%" src={url}></img>
                 </section>
             )
         // }
     }
+
 
     render(){
         if (this.props.data.weather){
@@ -75,29 +76,27 @@ class LocalInfoCard extends Component {
             return (
                 <React.Fragment>
                 <section className="card">     
-                <h3>{localCity} weather condition</h3>
-                <div className="content">
-                  <div className="column">
-                    <h3>{conditionText} {temperature} F</h3>
-                  </div>                        
-                  <div className="column">
-                    <h3>{hi} / {lo} F</h3>
-                  </div> 
-                  <div className="column">
-                    <h3>{wind} mph {dirText}</h3>
-                  </div> 
-                  <div className="column">
-                    <h3>{humidity} %</h3>
-                  </div>                                                                              
+                <div className="header">
+                    <h3 className="grey8">{localCity} weather</h3>
                 </div>
-                <div className="content secondary">                    
-                    <div className="column">
-                        <h4>{weatherResponse.item.forecast[1].day}</h4>
-                        <h5>{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high} / {weatherResponse.item.forecast[1].low} F</h5> 
+                <div className="body">
+                    <div className="content">
+                        <div className="column">
+                            <h3>{conditionText} {temperature} F</h3>
+                        </div>
+                        <div className="column secondary">
+                            <h4 className="grey8">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</h4>
+                        </div>
                     </div>
-                    <div className="column">
-                        <h4>{weatherResponse.item.forecast[2].day}</h4>
-                        <h5>{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high} / {weatherResponse.item.forecast[2].low} F</h5> 
+                    <div className="content secondary gap">                    
+                        <div className="column">
+                            <h4 className="grey8">{weatherResponse.item.forecast[1].day}</h4>
+                            <h5 className="grey6">{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high}/{weatherResponse.item.forecast[1].low} F</h5> 
+                        </div>
+                        <div className="column">
+                            <h4 className="grey8">{weatherResponse.item.forecast[2].day}</h4>
+                            <h5 className="grey6">{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high}/{weatherResponse.item.forecast[2].low} F</h5> 
+                        </div>
                     </div>
                 </div>
                 <p className="footer">Last update {new Date().toLocaleTimeString()}</p>

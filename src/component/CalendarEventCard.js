@@ -17,7 +17,7 @@ class CalendarEventCard extends Component {
         if (Object.keys(this.props.data.bart).length > 0){
           trainInfo = Object.keys(this.props.data.bart).map((destination)=>{
             return (
-              <tr key={destination}>
+              <tr key={destination} className="grey8">
                 <td><i className="fa fa-subway"></i> {destination}</td><td>{this.props.data.bart[destination].toLocaleTimeString()}</td>
               </tr>
             )
@@ -50,23 +50,39 @@ class CalendarEventCard extends Component {
           }  
         }  
         return (
-          <section className="card">   
-            <h3 className="header">{eventInfo.summary}</h3>
-            <p><i className="fa fa-clock-o"></i> {startTime}</p>
-            <p><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
-            <table>
+          <section className="card"> 
+            <div className="header">
+              <div className="flexContainer">  
+                <div className="column">
+                  <h3>{eventInfo.summary}</h3>
+                </div>
+                <div className="column">
+                  <h4 className="grey4"><i className="fa fa-clock-o"></i> {startTime}</h4>
+                </div>
+              </div>
+            </div>
+            <p className="grey11 gap"><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
+            <div className="content gap-lg">              
+              <div className="column">
+                <h1 className={delayStyle}>
+                  <span className="v-align">
+                    {duration}
+                  </span>
+                </h1>
+              </div>
+              <div className="column">
+                <h3 className="grey8">
+                  <span className="v-align">
+                    {conditionText} {temperature} F
+                  </span>
+                </h3>
+              </div>                        
+            </div>
+            <table className="content gap--">
               <tbody>
                 {trainInfo}
               </tbody>
             </table>
-            <div className="content">              
-              <div className="column">
-                <h1 className={delayStyle}>{duration}</h1>
-              </div>
-              <div className="column">
-                <h3>{conditionText} {temperature} F</h3>
-              </div>                        
-            </div>
             <p className="footer">Last update {reportTime}</p>     
           </section>
         );              
