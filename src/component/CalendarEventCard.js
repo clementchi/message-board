@@ -11,7 +11,7 @@ class CalendarEventCard extends Component {
         let conditionText = '-';
         let delayStyle;
         let location = 'Unknown location';
-        let startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'});
+        let startTime = '-';
         let trainInfo = [];
         let mapUrl;
         if (Object.keys(this.props.data.bart).length > 0){
@@ -29,6 +29,7 @@ class CalendarEventCard extends Component {
           let weatherResponse = this.props.data.weather;
           let tripResponse = this.props.data.trip;
           if (eventInfo && tripResponse && weatherResponse){
+              startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
               duration = tripResponse.rows[0].elements[0].duration_in_traffic.text;
               trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
               temperature = weatherResponse.item.condition.temp;
