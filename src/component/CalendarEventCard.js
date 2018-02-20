@@ -60,8 +60,7 @@ class CalendarEventCard extends Component {
                   <h4 className="grey4"><i className="fa fa-clock-o"></i> {startTime}</h4>
                 </div>
               </div>
-            </div>
-            <p className="grey11 gap"><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
+            </div>            
             <div className="content gap-lg">              
               <div className="column">
                 <h1 className={delayStyle}>
@@ -78,6 +77,7 @@ class CalendarEventCard extends Component {
                 </h3>
               </div>                        
             </div>
+            <p className="grey11 gap"><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
             <table className="content gap-- secondary">
               <tbody>
                 {trainInfo}

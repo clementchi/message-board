@@ -3,7 +3,7 @@
 }
 
 .app {
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -70,6 +70,7 @@ class LocalInfoCard extends Component {
             let humidity = weatherResponse.atmosphere.humidity;
             let localCity = weatherResponse.location.city;
             let dirText = this.getWindDirText(dir);
+            let tempInlineStyle = {'paddingTop': '10px'}
             let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.lat, weatherResponse.item.long);
             // let pm25Value = airQualityResponse.value;
             let tempStyle = '';
@@ -95,7 +96,7 @@ class LocalInfoCard extends Component {
                 <div className="body">
                     <div className="content">
                         <div className="column">                            
-                            <h1 className={tempStyle}>{temperature} F</h1>
+                            <h1 className={tempStyle} style={tempInlineStyle}>{temperature} F</h1>
                         </div>
                         <div className="column">
                             <h4><span className="grey4">{conditionText}</span></h4>
