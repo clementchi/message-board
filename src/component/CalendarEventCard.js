@@ -55,10 +55,8 @@ class CalendarEventCard extends Component {
           <section className="card"> 
             <div className="header">
               <div className="flexContainer">  
-                <div className="column">
-                  <div className="truncate">
-                    <h3>{eventInfo.summary}</h3>
-                  </div>
+                <div className="column grow">
+                  <h3 className="truncate">{eventInfo.summary}</h3>
                 </div>
                 <div className="column">
                   <h4 className="grey4"><i className="fa fa-clock-o"></i> {startTime}</h4>

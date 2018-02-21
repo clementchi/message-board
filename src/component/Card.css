@@ -8,41 +8,13 @@
     .card#radar {
         display:none;
     }  
-    h1 {
-        margin: 0.8rem 0 0.8rem 0;
-        font-size: 2rem !important;
-    }
 }
 
 @media only screen and (min-width: 360px) {
     .card {
         min-width: 360px;
         width: 100%;
-    }
-    h1 {
-        margin: 1rem 0 0.8rem 0;
-        font-size: 2rem !important;
-    }
-    h2 {
-        margin: 0.8rem 0 0.8rem 0;
-        font-size: 1.3rem !important;
-    }    
-    h3 {
-        margin: 0.8rem 0 0.8rem 0;
-        font-size: 1rem !important;
-    }  
-    h4 {
-        margin: 0.8rem 0 0.8rem 0;
-        font-size: 0.9rem !important;
-    }
-    h5 {
-        margin: 0.8rem 0 0.8rem 0;
-        font-size: 0.8rem !important;
-    }  
-    p {
-        font-size: 0.7rem;
     } 
-     
 }
 
 @media only screen and (min-width: 540px) {
@@ -50,29 +22,10 @@
         width: 570px;  
         height: 300px; 
     }
-    h1 {
-        margin: 1.5rem 0 1rem 0;
-        font-size: 4rem !important;
+
+    .card h1 {
+        font-size: 4rem;
     }
-    h2 {        
-        margin: 1rem 0 1rem 0;
-        font-size: 3rem !important;
-    }    
-    h3 {
-        margin: 1rem 0 1rem 0;
-        font-size: 1.6rem !important;
-    }
-    h4 {
-        margin: 1rem 0 1rem 0;
-        font-size: 1.3rem !important;
-    }
-    h5 {        
-        margin: 1rem 0 1rem 0;
-        font-size: 1.1rem !important;
-    }   
-    p {
-        font-size: 0.9rem;
-    } 
 }
 
 .header {
@@ -130,12 +83,17 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height:normal;
 }
 
 .column {
     flex-basis: 50%;
     line-height: 50%;
     display: inline-block;
+}
+
+.column.grow {
+    flex-grow: 2;
 }
 
 .gap-- {
@@ -171,19 +129,27 @@
 }
 
 .alert-success {
-    color: #3c763d
+    color: #3c763d;
+    background: none;
+    border: none;
 }
 
 .alert-info {
-    color: #31708f
+    color: #31708f;
+    background: none;
+    border: none;
 }
 
 .alert-warn {
-    color: #8a6d3b
+    color: #8a6d3b;
+    background: none;
+    border: none;    
 }
 
 .alert-danger {
-    color: #a94442
+    color: #a94442;
+    background: none;
+    border: none;    
 }
 
 a {
