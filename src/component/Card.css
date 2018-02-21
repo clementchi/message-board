@@ -125,6 +125,13 @@
     padding: 0 5px 0 5px;
 }
 
+.card .truncate {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .column {
     flex-basis: 50%;
     line-height: 50%;

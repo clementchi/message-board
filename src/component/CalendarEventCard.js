@@ -23,13 +23,14 @@ class CalendarEventCard extends Component {
             )
           });
         }
-
+        if (eventInfo.start){
+          startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+        }
         if (eventInfo.location){
           location = eventInfo.location;
           let weatherResponse = this.props.data.weather;
           let tripResponse = this.props.data.trip;
-          if (eventInfo && tripResponse && weatherResponse){
-              startTime = new Date(eventInfo.start.dateTime).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})
+          if (tripResponse && weatherResponse){
               duration = tripResponse.rows[0].elements[0].duration_in_traffic.text;
               trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
               temperature = weatherResponse.item.condition.temp;

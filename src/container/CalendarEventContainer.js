@@ -25,7 +25,12 @@ class CalendarEventContainer extends Component {
     }       
     render(){
         let eventInfo = this.props.data;
-        let data = {};
+        let data = {
+            weather: {},
+            trip: {},
+            event: eventInfo,
+            bart: {}
+        };
 
         if (eventInfo.location){          
           let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, eventInfo.location.replace(/#/g,''));
