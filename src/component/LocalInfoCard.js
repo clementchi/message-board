@@ -47,14 +47,12 @@ class LocalInfoCard extends Component {
      * Radar image only show up when there is shower, thunderstorm
      */
     shouldShowRadar(weatherCode, lat, lng){
-        // if (![20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 44, 3200].indexOf(weatherCode)){
-            let url = `https://api.wunderground.com/api/16bbc144197b4fff/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
-            return (
-                <section id="radar" className="card fill" >     
-                    <img ref='img' alt="radar" width="100%" src={url}></img>
-                </section>
-            )
-        // }
+        let url = `https://api.wunderground.com/api/16bbc144197b4fff/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
+        return (
+            <section id="radar" className="card fill" >     
+                <img ref='img' alt="radar" width="100%" src={url}></img>
+            </section>
+        )
     }
 
 
@@ -70,7 +68,6 @@ class LocalInfoCard extends Component {
             let humidity = weatherResponse.atmosphere.humidity;
             let localCity = weatherResponse.location.city;
             let dirText = this.getWindDirText(dir);
-            let tempInlineStyle = {'paddingTop': '10px'}
             let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.lat, weatherResponse.item.long);
             // let pm25Value = airQualityResponse.value;
             let tempStyle = '';
