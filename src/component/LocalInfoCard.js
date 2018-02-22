@@ -96,7 +96,7 @@ class LocalInfoCard extends Component {
                 <div className="body">
                     <div className="content">
                         <div className="column">                            
-                            <h1 className={tempStyle} style={tempInlineStyle}>{temperature} F</h1>
+                            <h1 className={tempStyle}>{temperature} F</h1>
                         </div>
                         <div className="column">
                             <h4><span className="grey4">{conditionText}</span></h4>
