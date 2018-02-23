@@ -51,16 +51,17 @@ class CalendarEventCard extends Component {
               }
           }  
         }  
+
         return (
           <section className="card"> 
             <div className="header">
               <div className="row">  
-                <div className="col-6">
-                  <h3>{eventInfo.summary}</h3>
+                <div className="card-title col-12 text-truncate">
+                  <h3><span className="grey4 d-inline-block"> {startTime}</span>&nbsp;&nbsp;<span className="d-inline-block">{eventInfo.summary}</span></h3>
                 </div>
-                <div className="col-6">
-                  <h4 className="grey4"><i className="fa fa-clock-o"></i> {startTime}</h4>
-                </div>
+                {/* <div className="card-title col-6">
+                  <h4 className="grey4">
+                </div> */}
               </div>
             </div>            
             <div className="row gap-lg">              
