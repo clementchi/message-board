@@ -54,24 +54,24 @@ class CalendarEventCard extends Component {
         return (
           <section className="card"> 
             <div className="header">
-              <div className="flexContainer">  
-                <div className="column grow">
+              <div className="row">  
+                <div className="col-6">
                   <h3>{eventInfo.summary}</h3>
                 </div>
-                <div className="column">
+                <div className="col-6">
                   <h4 className="grey4"><i className="fa fa-clock-o"></i> {startTime}</h4>
                 </div>
               </div>
             </div>            
-            <div className="content gap-lg">              
-              <div className="column">
+            <div className="row gap-lg">              
+              <div className="col-6">
                 <h1 className={delayStyle}>
                   <span className="v-align">
                     {duration}
                   </span>
                 </h1>
               </div>
-              <div className="column">
+              <div className="col-6">
                 <h3 className="grey8">
                   <span className="v-align">
                     {temperature} F {conditionText} 
@@ -80,7 +80,7 @@ class CalendarEventCard extends Component {
               </div>                        
             </div>
             <p className="grey11 gap"><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
-            <table className="content gap-- secondary">
+            <table className="d-none d-sm-block gap--">
               <tbody>
                 {trainInfo}
               </tbody>

@@ -91,23 +91,25 @@ class LocalInfoCard extends Component {
                     <h3 className="grey8">{localCity} weather</h3>
                 </div>
                 <div className="body">
-                    <div className="content">
-                        <div className="column">                            
+                    <div className="row">
+                        <div className="col-6">                            
                             <h1 className={tempStyle}>{temperature} F</h1>
                         </div>
-                        <div className="column">
+                        <div className="col-6">
                             <h4><span className="grey4">{conditionText}</span></h4>
-                            <h5 className="grey4 secondary">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</h5>
+                            <h5 className="grey4 d-none d-block">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</h5>
                         </div>                                                
                     </div>
-                    <div className="content secondary gap-lg">                    
-                        <div className="column">
-                            <h4 className="grey8">{weatherResponse.item.forecast[1].day}</h4>
-                            <h5 className="grey6">{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high}/{weatherResponse.item.forecast[1].low} F</h5> 
-                        </div>
-                        <div className="column">
-                            <h4 className="grey8">{weatherResponse.item.forecast[2].day}</h4>
-                            <h5 className="grey6">{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high}/{weatherResponse.item.forecast[2].low} F</h5> 
+                    <div className="d-none d-sm-block">
+                        <div className="row">                    
+                            <div className="col-sm-6">
+                                <h4 className="grey8">{weatherResponse.item.forecast[1].day}</h4>
+                                <h5 className="grey6">{weatherResponse.item.forecast[1].text}  {weatherResponse.item.forecast[1].high}/{weatherResponse.item.forecast[1].low} F</h5> 
+                            </div>
+                            <div className="col-sm-6">
+                                <h4 className="grey8">{weatherResponse.item.forecast[2].day}</h4>
+                                <h5 className="grey6">{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high}/{weatherResponse.item.forecast[2].low} F</h5> 
+                            </div>
                         </div>
                     </div>
                 </div>
