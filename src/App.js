@@ -10,7 +10,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: null
     };    
   }
   componentWillMount (){
@@ -46,9 +46,13 @@ class App extends Component {
     if (isSignedIn) {
       let user = window.gapi.auth2.getAuthInstance().currentUser.get();
       this.props.setUser(user);
-      return;
+      this.setState({isLoggedIn: true});
     }
-    this.props.setUser(null);
+    else {
+      this.props.setUser(null);  
+      this.setState({isLoggedIn: false});
+    }
+    return;
   }
   handleSignInClick(event) {
     // Ideally the button should only show up after gapi.client.init finishes, so that this
@@ -59,17 +63,17 @@ class App extends Component {
     window.gapi.auth2.getAuthInstance().signOut();
   }
   render() {
-    if (!this.props.user || !this.props.user.w3){
+    if (this.state.isLoggedIn === false){
        return (
-        <div className="container-fluid" style={{height:'100%', marginTop: '20rem'}}>        
+        <div className="container" style={{height:'100%', marginTop: '20rem'}}>        
           <h2 className="text-center">Welcome to family message board 7085</h2>
-          <div class="d-block align-middle">
+          <div className="d-block text-center">
             <button id="signin-button" className="btn btn-primary btn-lg btn-block" onClick={this.handleSignInClick}>Start</button>        
           </div>
         </div>
        );  
     }
-    else {
+    else if (this.state.isLoggedIn === true){
       if (contextAction.isContextDefined(this.props)){
         return (        
           <div className="app">
@@ -79,8 +83,18 @@ class App extends Component {
         )  
       }
     }
-    return null;
-  }
+    else {
+      return (
+        <div className="container-fluid" style={{height:'100%', marginTop: '20rem'}}>        
+          <div className="d-block text-center grey8">
+           <i className="fas fa-circle-notch fa-spin" style={{fontSize: '3rem', marginBottom: '1rem'}}></i> 
+           <h2>One moment ...</h2>
+          </div>
+        </div>
+      );
+    }
+    return '';
+   }
 }
 
 // Maps state from store to props

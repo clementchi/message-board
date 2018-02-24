@@ -57,12 +57,10 @@ class CalendarEventCard extends Component {
             <div className="header">
               <h4 className="text-truncate grey8"><i className="fas fa-clock"></i><span> {startTime}</span>&nbsp;-&nbsp;<span>{eventInfo.summary}</span></h4>
             </div>            
-            <div className="row gap-lg">              
+            <div className="row">              
               <div className="col-6">
                 <h1 className={delayStyle}>
-                  <span className="v-align">
                     {duration}
-                  </span>
                 </h1>
               </div>
               <div className="col-6">

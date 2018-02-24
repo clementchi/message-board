@@ -90,7 +90,6 @@ class LocalInfoCard extends Component {
                 <div className="header">
                     <h3 className="grey8">{localCity} weather</h3>
                 </div>
-                <div className="body">
                     <div className="row">
                         <div className="col-6">                            
                             <h1 className={tempStyle}>{temperature} F</h1>
@@ -112,7 +111,6 @@ class LocalInfoCard extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
                 <p className="footer">Last update {new Date().toLocaleTimeString()}</p>
               </section>
               {radarCard}
