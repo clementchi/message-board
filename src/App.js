@@ -61,8 +61,13 @@ class App extends Component {
   render() {
     if (!this.props.user || !this.props.user.w3){
       return (
-        <div>
-          <button id="signin-button" className="btn btn-primary btn-lg btn-block" onClick={this.handleSignInClick}>Log In</button>        
+        <div className="card">
+          <div className="card-body">
+            <p className="card-title align-center">Welcome to family message board 7085</p>
+            <div class="d-block align-middle">
+              <button id="signin-button" className="btn btn-primary btn-lg btn-block" onClick={this.handleSignInClick}>Start</button>        
+            </div>
+          </div>
         </div>
       );  
     }

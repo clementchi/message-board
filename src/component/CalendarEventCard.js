@@ -66,10 +66,8 @@ class CalendarEventCard extends Component {
                 </h1>
               </div>
               <div className="col-6">
-                <h4 className="grey8">
-                  <span className="v-align">
-                    {temperature} F {conditionText} 
-                  </span>
+                <h4 className="grey8 align-bottom">
+                  {temperature} F {conditionText} 
                 </h4>
               </div>                        
             </div>

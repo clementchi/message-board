@@ -50,7 +50,7 @@ class LocalInfoCard extends Component {
         let url = `https://api.wunderground.com/api/16bbc144197b4fff/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
         return (
             <section id="radar" className="card fill" >     
-                <img ref='img' alt="radar" width="100%" src={url}></img>
+                <img ref='img' alt="radar" width="100%" src=''></img>
             </section>
         )
     }
@@ -97,7 +97,7 @@ class LocalInfoCard extends Component {
                         </div>
                         <div className="col-6">
                             <h4><span className="grey4">{conditionText}</span></h4>
-                            <h5 className="grey4 d-none d-block">{hi}/{lo} F&nbsp;&nbsp;{wind} mph {dirText}&nbsp;&nbsp;{humidity} %</h5>
+                            <h5 className="grey4 d-none d-block"><span className="d-inline-block">{hi}/{lo} F</span>&nbsp;&nbsp;<span className="d-inline-block">{wind} mph {dirText}</span>&nbsp;&nbsp;<span className="d-inline-block">{humidity} %</span></h5>
                         </div>                                                
                     </div>
                     <div className="d-none d-sm-block">
