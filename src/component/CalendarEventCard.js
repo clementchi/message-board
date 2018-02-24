@@ -17,9 +17,9 @@ class CalendarEventCard extends Component {
         if (Object.keys(this.props.data.bart).length > 0){
           trainInfo = Object.keys(this.props.data.bart).map((destination)=>{
             return (
-              <tr key={destination} className="grey8">
-                <td><i className="fa fa-subway"></i> {destination}</td><td>{this.props.data.bart[destination].toLocaleTimeString()}</td>
-              </tr>
+              <div key={destination} className="grey8 col-sm-6">
+                <i className="fa fa-subway"></i> {destination} {this.props.data.bart[destination].toLocaleTimeString()}
+              </div>
             )
           });
         }
@@ -55,7 +55,7 @@ class CalendarEventCard extends Component {
         return (
           <section className="card"> 
             <div className="header">
-              <h3 className="text-truncate grey6"><span> {startTime}</span>&nbsp;-&nbsp;<span>{eventInfo.summary}</span></h3>
+              <h4 className="text-truncate grey8"><i className="fas fa-clock"></i><span> {startTime}</span>&nbsp;-&nbsp;<span>{eventInfo.summary}</span></h4>
             </div>            
             <div className="row gap-lg">              
               <div className="col-6">
@@ -73,12 +73,10 @@ class CalendarEventCard extends Component {
                 </h4>
               </div>                        
             </div>
-            <p className="grey11 gap"><i className="fa fa-map-marker"></i> <a href={mapUrl} target="_map">{location}</a></p>
-            <table className="d-none d-sm-block gap--">
-              <tbody>
+            <p className="grey11 gap"><i className="fas fa-map-marker-alt"></i> <a href={mapUrl} target="_map">{location}</a></p>
+            <div className="d-none d-sm-block row">
                 {trainInfo}
-              </tbody>
-            </table>
+            </div>
             {/* <p className="footer">Last update {reportTime}</p>      */}
           </section>
         );              
