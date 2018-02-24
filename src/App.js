@@ -60,16 +60,14 @@ class App extends Component {
   }
   render() {
     if (!this.props.user || !this.props.user.w3){
-      return (
-        <div className="card">
-          <div className="card-body">
-            <p className="card-title align-center">Welcome to family message board 7085</p>
-            <div class="d-block align-middle">
-              <button id="signin-button" className="btn btn-primary btn-lg btn-block" onClick={this.handleSignInClick}>Start</button>        
-            </div>
+       return (
+        <div className="container-fluid" style={{height:'100%', marginTop: '20rem'}}>        
+          <h2 className="text-center">Welcome to family message board 7085</h2>
+          <div class="d-block align-middle">
+            <button id="signin-button" className="btn btn-primary btn-lg btn-block" onClick={this.handleSignInClick}>Start</button>        
           </div>
         </div>
-      );  
+       );  
     }
     else {
       if (contextAction.isContextDefined(this.props)){
