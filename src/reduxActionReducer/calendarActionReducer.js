@@ -1,8 +1,8 @@
 // action creator;
-export const getCalendarEvents = (minTime, maxTime) => {
+export const getCalendarEvents = (calendarId, minTime, maxTime) => {
     return (dispatch) => {
       window.gapi.client.request({
-        'path': `https://www.googleapis.com/calendar/v3/calendars/sanramonrobot@gmail.com/events?timeMin=${minTime.toISOString()}&timeMax=${maxTime.toISOString()}&orderBy=startTime&singleEvents=true`
+        'path': `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?timeMin=${minTime.toISOString()}&timeMax=${maxTime.toISOString()}&orderBy=startTime&singleEvents=true`
       }).then(function(response) {
         dispatch(getCalendarEventsSuccess(response.result));
       }, function(reason) {

@@ -57,13 +57,15 @@ class EarthquakeInfoCard extends Component {
                             <h3 className="grey8"><i className="fas fa-exclamation-circle alert-danger"></i> Earthquake Alert</h3>
                         </div>
                         <div className="body" style={{marginBottom:'1rem'}}>
-                            <div className="row">
+                            <div className="row" style={{marginBottom:'1rem'}}>
                                 <div className="col-6">                            
                                     <h1 className={latestEarthqukeInfo.colorStyle}>{latestEarthqukeInfo.magnitude} M</h1>
                                 </div>
                                 <div className="col-6">                            
-                                    <h6><span className="grey4 d-inline-block"><i className="fas fa-map-marker-alt"></i> <a href={latestEarthqukeInfo.url}>{latestEarthqukeInfo.location}</a></span></h6>
-                                    <h6 className="grey4 d-none d-block">{latestEarthqukeInfo.time}</h6>
+                                    <div className="align-bottom">
+                                        <h6><span className="grey4 d-inline-block"><i className="fas fa-map-marker-alt"></i> <a href={latestEarthqukeInfo.url}>{latestEarthqukeInfo.location}</a></span></h6>
+                                        <h6 className="grey4 d-none d-block">{latestEarthqukeInfo.time}</h6>
+                                    </div>
                                 </div>                            
                             </div>                       
                             {latestEarthquakeDisplay}                    

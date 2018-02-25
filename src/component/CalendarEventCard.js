@@ -70,7 +70,7 @@ class CalendarEventCard extends Component {
               </div>                        
             </div>
             <p className="grey11 gap"><i className="fas fa-map-marker-alt"></i> <a href={mapUrl} target="_map">{location}</a></p>
-            <div className="d-none d-sm-block row">
+            <div className="row" style={{marginBottom:'1rem'}}>
                 {trainInfo}
             </div>
             {/* <p className="footer">Last update {reportTime}</p>      */}

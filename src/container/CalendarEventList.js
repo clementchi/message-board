@@ -12,7 +12,7 @@ class CalendarEventList extends Component {
         let minTime = new Date();
         let maxTime = new Date();
         maxTime.setHours(minTime.getHours() + 12);
-        this.props.getEvents(minTime, maxTime);
+        this.props.getEvents(this.props.user.w3.U3, minTime, maxTime);
         this.timeoutRef = window.setTimeout(()=>{
           this.getData();
         }, 300000);
@@ -51,15 +51,16 @@ class CalendarEventList extends Component {
 // Maps state from store to props
 const mapStateToProps = (state, ownProps) => {
     return {
-      events: state.events
+      events: state.events,
+      user: state.user
     }
   };
   
   // Maps actions to props
   const mapDispatchToProps = (dispatch) => {
     return {
-      getEvents: (minTime, maxTime) => {
-        dispatch(calendarAction.getCalendarEvents(minTime, maxTime))
+      getEvents: (calendarId, minTime, maxTime) => {
+        dispatch(calendarAction.getCalendarEvents(calendarId, minTime, maxTime))
       }
     }
   };
