@@ -22,10 +22,10 @@ class EarthquakeInfoCard extends Component {
         return quakes.map((quake)=>{
             let magnitudeColorStyle = `col-2 ${quake.colorStyle}`;
             return (
-                <div className="row">
+                <div className="row" style={{fontSize:'0.8rem'}}>
                     <div className={magnitudeColorStyle}><span className="d-inline-block">{quake.magnitude}M</span></div>
-                    <div className="col-6 grep8"><i className="fas fa-map-marker-alt grey8"></i> <a href={quake.url} className="grey8">{quake.location}</a></div>
-                    <div className="col-4 grey8">{quake.time}</div>                    
+                    <div className="col-5 grep8"><i className="fas fa-map-marker-alt grey8"></i> <a href={quake.url} className="grey8">{quake.location}</a></div>
+                    <div className="col-5 grey8">{quake.time}</div>                    
                 </div>
             )
         });
@@ -41,7 +41,7 @@ class EarthquakeInfoCard extends Component {
                     magnitude: earthquakeInfo.mag,
                     location: location,
                     colorStyle: this.getMagnitudeColor(earthquakeInfo.magnitude),
-                    time: time.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
+                    time: time.toLocaleTimeString('en-US', {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit', second:'2-digit'}),
                     url: earthquakeInfo.url
                 }
             });
