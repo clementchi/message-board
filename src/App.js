@@ -68,7 +68,7 @@ class App extends Component {
     if (this.state.isLoggedIn === false){
        return (
         <div className="container" style={{height:'100%', marginTop: '20rem'}}>        
-          <h2 className="text-center">Welcome to family message board 7085</h2>
+          <h2 className="text-center">Welcome to family board</h2>
           <div className="d-block text-center">
             <button id="signin-button" className="btn btn-primary btn-lg btn-block" onClick={this.handleSignInClick}>Start</button>        
           </div>
