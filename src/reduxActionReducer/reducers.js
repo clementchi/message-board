@@ -7,6 +7,7 @@ import weather from './weatherActionReducer';
 import user from './userActionReducer';
 import airQuality from './airQualityActionReducer';
 import bartSchedule from './bartScheduleActionReducer';
+import earthquake from './earthquakeActionReducer';
 
 export default combineReducers({
   user: user,
@@ -15,5 +16,6 @@ export default combineReducers({
   trip: trip,
   weather: weather,
   airQuality: airQuality,
-  bartSchedule: bartSchedule
+  bartSchedule: bartSchedule,
+  earthquake: earthquake
 });

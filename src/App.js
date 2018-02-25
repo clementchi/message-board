@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CalendarEventList from './container/CalendarEventList';
 import LocalInfoContainer from './container/LocalInfoContainer';
+import EarthquakeContainer from './container/EarthquakeContainer';
 import * as contextAction from './reduxActionReducer/contextActionReducer';
 import * as userAction from './reduxActionReducer/userActionReducer';
 import './App.css';
+
 
 class App extends Component {
   constructor(props){
@@ -78,6 +80,7 @@ class App extends Component {
         return (        
           <div className="app">
             <LocalInfoContainer context={this.props.context}></LocalInfoContainer>
+            <EarthquakeContainer context={this.props.context}></EarthquakeContainer>
             <CalendarEventList context={this.props.context}></CalendarEventList>
           </div>
         )  
