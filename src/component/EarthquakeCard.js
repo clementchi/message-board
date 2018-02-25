@@ -21,12 +21,11 @@ class EarthquakeInfoCard extends Component {
     showRecentQuakes(quakes){
         return quakes.map((quake)=>{
             let magnitudeColorStyle = `col-2 ${quake.colorStyle}`;
-
             return (
                 <div className="row">
-                    <div className={magnitudeColorStyle}>{quake.magnitude} M</div>
-                    <div className="col-5 grey8"><i className="fas fa-map-marker-alt grey8"></i> <a href={quake.url} className="grey8">{quake.location}</a></div>
-                    <div className="col-4 grey8">{quake.time}</div>
+                    <div className={magnitudeColorStyle}><span className="d-inline-block">{quake.magnitude}M</span></div>
+                    <div className="col-6 grep8"><i className="fas fa-map-marker-alt grey8"></i> <a href={quake.url} className="grey8">{quake.location}</a></div>
+                    <div className="col-4 grey8">{quake.time}</div>                    
                 </div>
             )
         });
@@ -37,12 +36,12 @@ class EarthquakeInfoCard extends Component {
                 let earthquakeInfo = quake.properties;
                 let time = new Date();
                 time.setTime(earthquakeInfo.time);
-
+                let location = earthquakeInfo.place.substr(0, earthquakeInfo.place.lastIndexOf(','))
                 return {
                     magnitude: earthquakeInfo.mag,
-                    location: earthquakeInfo.place,
+                    location: location,
                     colorStyle: this.getMagnitudeColor(earthquakeInfo.magnitude),
-                    time: time.toLocaleTimeString('en-US', {month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit', second:'2-digit'}),
+                    time: time.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit', second:'2-digit'}),
                     url: earthquakeInfo.url
                 }
             });
@@ -62,10 +61,10 @@ class EarthquakeInfoCard extends Component {
                                 <h1 className={latestEarthqukeInfo.colorStyle}>{latestEarthqukeInfo.magnitude} M</h1>
                             </div>
                             <div className="col-6">                            
-                                <h5><span className="grey4 d-block"><i className="fas fa-map-marker-alt"></i> <a href={latestEarthqukeInfo.url}>{latestEarthqukeInfo.location}</a></span></h5>
-                                <h5 className="grey4 d-none d-block">{latestEarthqukeInfo.time}</h5>
+                                <h6><span className="grey4 d-inline-block"><i className="fas fa-map-marker-alt"></i> <a href={latestEarthqukeInfo.url}>{latestEarthqukeInfo.location}</a></span></h6>
+                                <h6 className="grey4 d-none d-block">{latestEarthqukeInfo.time}</h6>
                             </div>                            
-                        </div>
+                        </div>                       
                         {latestEarthquakeDisplay}                    
                     </section>
               </React.Fragment>
