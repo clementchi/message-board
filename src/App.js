@@ -85,6 +85,16 @@ class App extends Component {
           </div>
         )  
       }
+      else if (this.props.context.loading === true){
+        return (
+          <div className="container-fluid" style={{height:'100%', marginTop: '20rem'}}>        
+            <div className="d-block text-center grey8">
+            <i className="fas fa-circle-notch fa-spin" style={{fontSize: '3rem', marginBottom: '1rem'}}></i> 
+            <h2>Finding location ...</h2>
+            </div>
+          </div>          
+        )
+      }
     }
     else {
       return (
