@@ -46,17 +46,66 @@ class LocalInfoCard extends Component {
     /**
      * Radar image only show up when there is shower, thunderstorm
      */
-    shouldShowRadar(weatherCode, lat, lng){
-        //prod - c9625cf5f6144221
-        //dev - 16bbc144197b4fff
-        let url = `https://api.wunderground.com/api/c9625cf5f6144221/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
-        return (
-            <section id="radar" className="card fill" >     
-                <img ref='img' alt="radar" width="100%" src={url}></img>
-            </section>
-        )
+    shouldShowRadar(todaysWeatherCode, tomorrowWeatherCode, lat, lng){
+        let token1 = 'c9625cf5f6144221';
+        let token2 = '16bbc144197b4fff';
+        let token = '';
+        if (this.token === token1){
+            token = token2;
+        }
+        else {
+            token = token1;
+        }
+
+        if (this.isRainyWeather(todaysWeatherCode) || this.isRainyWeather(tomorrowWeatherCode)){
+            let url = `https://api.wunderground.com/api/${token}/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
+            return (
+                <section id="radar" className="card fill" >     
+                    <img ref='img' alt="radar" width="100%" src={url}></img>
+                </section>
+            )    
+        }    
+        return '';    
     }
 
+    isRainyWeather(weatherCode) {
+        if ([0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            23,
+            25,
+            35,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            45,
+            46,
+            47
+            ].indexOf(parseInt(weatherCode, 10)) >= 0){
+            return true;
+        }
+        return false;
+    }
 
     render(){
         if (this.props.data.weather){
@@ -70,7 +119,7 @@ class LocalInfoCard extends Component {
             let humidity = weatherResponse.atmosphere.humidity;
             let localCity = weatherResponse.location.city;
             let dirText = this.getWindDirText(dir);
-            let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.lat, weatherResponse.item.long);
+            let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.forecast[1].code, weatherResponse.item.lat, weatherResponse.item.long);
             // let pm25Value = airQualityResponse.value;
             let tempStyle = '';
             if (temperature >= 90){
