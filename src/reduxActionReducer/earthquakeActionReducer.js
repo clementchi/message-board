@@ -1,11 +1,11 @@
 // action creator;
-export const getEarthquake = (minTime, maxTime, location) => {
+export const getEarthquake = (minTime, maxTime, location, minMagnitude, maxRadius) => {
     return (dispatch) => {
         let url = '';
         let earthquakeKey = '';
         if (location.latitude){
           earthquakeKey = `${location.latitude}${location.longitude}`;
-          url = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${minTime.toISOString()}&endtime=${maxTime.toISOString()}&latitude=${location.latitude}&longitude=${location.longitude}&maxradiuskm=30&minmagnitude=2&orderby=time&limit=6`
+          url = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${minTime.toISOString()}&endtime=${maxTime.toISOString()}&latitude=${location.latitude}&longitude=${location.longitude}&maxradiuskm=${maxRadius}&minmagnitude=${minMagnitude}&orderby=time&limit=6`
         }
         fetch(url)
           .then(response => {

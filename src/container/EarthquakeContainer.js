@@ -11,8 +11,8 @@ class EarthquakeInfoContainer extends Component {
     getData(){
         let minTime = new Date();
         let maxTime = new Date();
-        minTime.setHours(maxTime.getHours() - 48);        
-        this.props.getEarthquake(minTime, maxTime, this.props.context);
+        minTime.setHours(maxTime.getHours() - 24);        
+        this.props.getEarthquake(minTime, maxTime, this.props.context, 2.3, 30);
         this.timeoutRef = window.setTimeout(()=>{
           this.getData();
         }, 300000);
@@ -51,8 +51,8 @@ const mapStateToProps = (state, ownProps) => {
 // Maps actions to props
 const mapDispatchToProps = (dispatch) => {
     return {
-        getEarthquake: (minTime, maxTime, context) => {
-            dispatch(earthquakeAction.getEarthquake(minTime, maxTime, context));
+        getEarthquake: (minTime, maxTime, context, minMagnitude, maxRadius) => {
+            dispatch(earthquakeAction.getEarthquake(minTime, maxTime, context, minMagnitude, maxRadius));
         }
     } 
 };
