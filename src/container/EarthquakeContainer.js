@@ -12,7 +12,7 @@ class EarthquakeInfoContainer extends Component {
         let minTime = new Date();
         let maxTime = new Date();
         minTime.setHours(maxTime.getHours() - 24);        
-        this.props.getEarthquake(minTime, maxTime, this.props.context, 2.3, 30);
+        this.props.getEarthquake(minTime, maxTime, this.props.context, 2.5, 65);
         this.timeoutRef = window.setTimeout(()=>{
           this.getData();
         }, 300000);

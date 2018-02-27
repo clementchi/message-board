@@ -68,7 +68,8 @@ class EarthquakeInfoCard extends Component {
                                     </div>
                                 </div>                            
                             </div>                       
-                            {latestEarthquakeDisplay}                    
+                            {latestEarthquakeDisplay}
+                            <p className="footer">Within 40 miles radius and greater than 2.5M</p>                    
                         </div>
                     </section>
               </React.Fragment>
