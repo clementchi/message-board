@@ -56,9 +56,10 @@ class LocalInfoCard extends Component {
         else {
             token = token1;
         }
+        this.token = token2;
 
         if (this.isRainyWeather(todaysWeatherCode) || this.isRainyWeather(tomorrowWeatherCode)){
-            let url = `https://api.wunderground.com/api/${token}/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
+            let url = `https://api.wunderground.com/api/${this.token}/animatedradar/image.gif?centerlat=${lat}&centerlon=${lng}&radius=40&width=570&height=300&newmaps=1&timelabel=1&timelabel.x=10&timelabel.y=290&smooth=1&num=5&bust=${Math.floor(Math.random() * Math.floor(1000))}`;
             let fullscreenurl = `https://www.weather.com/weather/today/l/${lat},${lng}`;
             return (
                 <section id="radar" className="card fill" >     
