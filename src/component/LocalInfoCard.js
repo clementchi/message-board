@@ -120,6 +120,10 @@ class LocalInfoCard extends Component {
             let dir = weatherResponse.wind.direction;
             let humidity = weatherResponse.atmosphere.humidity;
             let localCity = weatherResponse.location.city;
+            let duration = '-';
+            let trafficDelay;
+            let delayStyle;
+            let homeAddress;
             let dirText = this.getWindDirText(dir);
             let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.forecast[1].code, weatherResponse.item.lat, weatherResponse.item.long);
             // let pm25Value = airQualityResponse.value;
@@ -136,6 +140,27 @@ class LocalInfoCard extends Component {
             else {
                 tempStyle = 'alert-info';
             }
+
+            let tripResponse = this.props.data.trip;
+            if (tripResponse){
+                duration = tripResponse.rows[0].elements[0].duration_in_traffic.text;
+                trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
+                homeAddress = tripResponse.destinationAddresses[0];
+            }
+            if (trafficDelay > 20){
+                delayStyle = 'alert-danger';
+            }
+            else if (trafficDelay > 10){
+                delayStyle = 'alert-warn';
+            }
+            else if (trafficDelay > 5){
+                delayStyle = 'alert-info';
+            }
+            else {
+                delayStyle = 'alert-success';
+            }   
+            
+            let mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${homeAddress}`;
 
             return (
                 <React.Fragment>
@@ -164,7 +189,7 @@ class LocalInfoCard extends Component {
                             </div>
                         </div>
                     </div>
-                <p className="footer">Last update {new Date().toLocaleTimeString()}</p>
+                <p className="footer"><h6 class={delayStyle}><b>{duration}</b> from <i className="fas fa-map-marker-alt"></i> <a href={mapUrl} target="_map">{homeAddress}</a></h6></p>
               </section>
               {radarCard}
               </React.Fragment>
