@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 // action creator;
 export const getWeather = (location) => {
     return (dispatch) => {
@@ -24,7 +26,7 @@ export const getWeather = (location) => {
 export function resolveWeatherFromProps(props, weatherKey){
   let weatherResponse = props.weather[weatherKey] || null;
   if (weatherResponse){
-    return weatherResponse.query.results.channel;
+    return _.get(weatherResponse, 'query.results.channel') || null;
   }
   return null;
 }
