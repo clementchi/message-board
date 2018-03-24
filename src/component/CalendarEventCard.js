@@ -31,7 +31,7 @@ class CalendarEventCard extends Component {
           let weatherResponse = this.props.data.weather;
           let tripResponse = this.props.data.trip;
           if (tripResponse && weatherResponse){
-              duration = tripResponse.rows[0].elements[0].duration_in_traffic.text;
+              duration = `${Math.round(tripResponse.rows[0].elements[0].duration_in_traffic.value / 60)} mins` ;
               trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
               temperature = weatherResponse.item.condition.temp;
               conditionText = weatherResponse.item.condition.text;
