@@ -76,7 +76,6 @@ class App extends Component {
        );  
     }
     else if (this.state.isLoggedIn === true){
-      console.log('context', this.props);
 
       if (contextAction.isContextDefined(this.props)){
         return (        

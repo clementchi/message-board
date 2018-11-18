@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Card.css';
+import {getTrafficDisplayColor} from './styleHelpers'
 
 class CalendarEventCard extends Component {      
     render(){
@@ -37,18 +38,8 @@ class CalendarEventCard extends Component {
               conditionText = weatherResponse.item.condition.text;
               mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${location}`;
               
-              if (trafficDelay > 20){
-                delayStyle = 'alert-danger';
-              }
-              else if (trafficDelay > 10){
-                delayStyle = 'alert-warn';
-              }
-              else if (trafficDelay > 5){
-                delayStyle = 'alert-info';
-              }
-              else {
-                delayStyle = 'alert-success';
-              }
+
+              delayStyle = getTrafficDisplayColor(trafficDelay)
           }  
         }  
 

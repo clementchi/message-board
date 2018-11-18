@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as tripAction from '../reduxActionReducer/tripActionReducer';
 import * as weatherAction from '../reduxActionReducer/weatherActionReducer';
 import * as bartAction from '../reduxActionReducer/bartScheduleActionReducer';
+import * as airQualityAction from '../reduxActionReducer/airQualityActionReducer';
+
 import CalendarEventCard from '../component/CalendarEventCard';
 
 class CalendarEventContainer extends Component {
@@ -15,7 +17,7 @@ class CalendarEventContainer extends Component {
     }
     getData(){
         this.props.getTripDuration(this.props.context, this.props.data.location);
-        this.props.getWeather(this.props.data.location);        
+        this.props.getWeather(this.props.data.location);      
         if (this.bartStationId){
             this.props.getBartSchedule(this.bartStationId);
         }
@@ -36,6 +38,7 @@ class CalendarEventContainer extends Component {
           let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, eventInfo.location.replace(/#/g,''));
           let tripKey = tripAction.getTripKey(this.props.context.latitude, this.props.context.longitude, eventInfo.location);
           let tripResponse = tripAction.resolveTripResponseFromProp(this.props, tripKey);     
+          //let airQualityResponse = airQualityAction.resolveAirQualityFromProps(this.props);
           let bartScheduleResponse = {};
           let trainInfo = {};
           if (this.bartStationId){
@@ -97,7 +100,10 @@ const mapDispatchToProps = (dispatch) => {
     },
     getBartSchedule: (context, destination) => {
         dispatch(bartAction.getBartSchedule(context, destination))
-    }  
+    },
+    getAirQuality: (context, destination)=> {
+        dispatch(airQualityAction.getAirQuality(context))
+    }
   }
 };
 

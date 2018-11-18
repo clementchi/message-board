@@ -17,7 +17,7 @@ class LocalInfoContainer extends Component {
     getData(){
         this.props.getWeather(this.props.context);
         this.props.getTripDuration(this.props.context, this.baseAddress)
-        // this.props.getAirQuality(this.props.context);
+        this.props.getAirQuality(this.props.context);
         this.timeoutRef = window.setTimeout(()=>{
           this.getData();
         }, 300000);
@@ -35,18 +35,59 @@ class LocalInfoContainer extends Component {
         let tripKey = tripAction.getTripKey(this.props.context.latitude, this.props.context.longitude, this.baseAddress);
         let tripResponse = tripAction.resolveTripResponseFromProp(this.props, tripKey);           
         let weatherResponse = weatherAction.resolveWeatherFromProps(this.props, `${this.props.context.latitude}${this.props.context.longitude}`);
-        // let airQualityResponse = airQualityAction.resolveAirQualityFromProps(this.props);
-        if (weatherResponse){
-            let data = {
-                weather: weatherResponse,
-                trip: tripResponse
-            }
+        let airQualityRespose = airQualityAction.resolveAirQualityFromProps(this.props);
+        let data = { 
+            home: {
+              address: ''                        
+            },
+            location: {
+                shortDescription: '',                    
+                address: '',
+                timeToHome:'',
+                distanceFromHome: '',
+                bartSchedule: {
+                    '{destinations}':[
+                        'time'
+                    ]
+                },
+                earthquake: [
+                    {
+                        mag: '',
+                        location: '',
+                        time: ''
+                    }
+                ],
+                weather: [{
+                    day: '',
+                    date: '',
+                    temperature: '',
+                    highTemperature: '',
+                    lowTemperature: '',
+                    condition: '',
+                    windSpeed: '',
+                    windDirection: '',   
+                    humidity: ''
+                }],
+                airQuality: {
 
-            return (
-                <LocalInfoCard data={data}/>
-            )
+                }
+            }
         }
-        return null;
+        if (airQualityRespose){
+            data.airQuality = airQualityRespose            
+        }
+
+        if (weatherResponse){
+            data.weather = weatherResponse            
+        }
+
+        if (tripResponse){
+            data.trip = tripResponse            
+        }
+
+        return (
+            <LocalInfoCard data={data}/>
+        )
     }
 }
 

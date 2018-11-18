@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Card.css';
-
+import {getAirQualityDisplayColor, getTrafficDisplayColor, getTempretureDisplayColor} from './styleHelpers'
 class LocalInfoCard extends Component {
     getWindDirText (dir){
         let dirText;
@@ -112,6 +112,7 @@ class LocalInfoCard extends Component {
     render(){
         if (this.props.data.weather){
             let weatherResponse = this.props.data.weather;
+            let airQualityResponse = this.props.data.airQuality || {};
             let temperature = weatherResponse.item.condition.temp;
             let conditionText = weatherResponse.item.condition.text;
             let hi = weatherResponse.item.forecast[0].high;
@@ -123,23 +124,12 @@ class LocalInfoCard extends Component {
             let duration = '-';
             let trafficDelay;
             let delayStyle;
+            let aqiStyle;
             let homeAddress;
             let dirText = this.getWindDirText(dir);
             let radarCard = this.shouldShowRadar(weatherResponse.item.condition.code, weatherResponse.item.forecast[1].code, weatherResponse.item.lat, weatherResponse.item.long);
-            // let pm25Value = airQualityResponse.value;
+            let pm25Value = airQualityResponse.value;
             let tempStyle = '';
-            if (temperature >= 90){
-                tempStyle = 'alert-danger';
-            }
-            else if (temperature >= 80){
-                tempStyle = 'alert-warn';
-            }
-            else if (temperature >= 60){
-                tempStyle = 'alert-success';
-            }            
-            else {
-                tempStyle = 'alert-info';
-            }
 
             let tripResponse = this.props.data.trip;
             if (tripResponse){
@@ -147,19 +137,11 @@ class LocalInfoCard extends Component {
                 trafficDelay = (tripResponse.rows[0].elements[0].duration_in_traffic.value - tripResponse.rows[0].elements[0].duration.value) / 60
                 homeAddress = tripResponse.destinationAddresses[0];
             }
-            if (trafficDelay > 20){
-                delayStyle = 'alert-danger';
-            }
-            else if (trafficDelay > 10){
-                delayStyle = 'alert-warn';
-            }
-            else if (trafficDelay > 5){
-                delayStyle = 'alert-info';
-            }
-            else {
-                delayStyle = 'alert-success';
-            }   
-            
+
+            delayStyle = getTrafficDisplayColor(trafficDelay)
+            tempStyle = getTempretureDisplayColor(temperature)
+            aqiStyle = getAirQualityDisplayColor(pm25Value)
+
             let mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${homeAddress}`;
 
             return (
@@ -174,7 +156,7 @@ class LocalInfoCard extends Component {
                         </div>
                         <div className="col-6">
                             <h4><span className="grey4">{conditionText}</span></h4>
-                            <h5 className="grey4 d-none d-block"><span className="d-inline-block">{hi}/{lo} F</span>&nbsp;&nbsp;<span className="d-inline-block">{wind} mph {dirText}</span>&nbsp;&nbsp;<span className="d-inline-block">{humidity} %</span></h5>
+                            <h5 className="grey4 d-none d-block"><span className="d-inline-block">{hi}/{lo} F</span>&nbsp;&nbsp;<span className="d-inline-block">{wind} mph {dirText}</span>&nbsp;&nbsp;<span className="d-inline-block">{humidity} %</span><span className="d-inline-block"><span class={aqiStyle}>Air Quality {pm25Value}</span></span></h5>
                         </div>                                                
                     </div>
                     <div className="d-none d-sm-block">
@@ -188,8 +170,8 @@ class LocalInfoCard extends Component {
                                 <h5 className="grey6">{weatherResponse.item.forecast[2].text}  {weatherResponse.item.forecast[2].high}/{weatherResponse.item.forecast[2].low} F</h5> 
                             </div>
                         </div>
-                    </div>
-                <p className="footer"><h6 class={delayStyle}><b>{duration}</b> from <i className="fas fa-map-marker-alt"></i> <a href={mapUrl} target="_map">{homeAddress}</a></h6></p>
+                    </div>                    
+                <p className="footer"><h6><b><span class={delayStyle}>{duration}</span></b> from <i className="fas fa-map-marker-alt"></i> <a href={mapUrl} target="_map">{homeAddress}</a></h6></p>
               </section>
               {radarCard}
               </React.Fragment>
